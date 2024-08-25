@@ -28,6 +28,7 @@ using Label = System.Windows.Controls.Label;
 using Orientation = System.Windows.Controls.Orientation;
 using System.Windows.Documents;
 using MessageBox = System.Windows.MessageBox;
+using WindowsGSM.DatabaseAccess;
 
 namespace WindowsGSM
 {
@@ -363,6 +364,16 @@ namespace WindowsGSM
             StartServerTableRefresh();
 
             StartDashBoardRefresh();
+
+            StartServerReproting();
+        }
+
+        private void StartServerReproting()
+        {
+            DatabaseAccess.Pipeline pipeline = new DatabaseAccess.Pipeline();
+            _ = pipeline.UpdatedGameServers();
+
+
         }
 
         private Process GetConsoleProcess(int processId)

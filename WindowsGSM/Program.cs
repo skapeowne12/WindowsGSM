@@ -54,7 +54,7 @@ namespace WindowsGSM
 
                 return null;
             };
-
+            Debug.WriteLine("Testing");
             App.Main();
         }
     }
