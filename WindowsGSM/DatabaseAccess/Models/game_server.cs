@@ -8,7 +8,7 @@ namespace WindowsGSM.DatabaseAccess.Models
 {
     internal class game_server
     {
-        public string id {  get; set; }
+        public string ID {  get; set; }
         public string ServerName { get; set; }
         public string ServerStatus { get; set; }
         public string PID {get; set; }

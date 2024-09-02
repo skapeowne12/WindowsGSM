@@ -371,6 +371,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DatabaseAccess\DatabaseConstants.cs" />
     <Compile Include="DatabaseAccess\Models\game_server.cs" />
     <Compile Include="DatabaseAccess\Pipeline.cs" />
     <Compile Include="DatabaseAccess\Settings\ReadDatabaseSettings.cs" />
@@ -449,6 +450,7 @@
     <Compile Include="Functions\InstallAddons.cs" />
     <Compile Include="Functions\UdpClientHandler.cs" />
     <Compile Include="Functions\JavaHelper.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="WindowsFirewall.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

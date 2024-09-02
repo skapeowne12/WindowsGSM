@@ -368,12 +368,13 @@ namespace WindowsGSM
             StartServerReproting();
         }
 
-        private void StartServerReproting()
+        public async void StartServerReproting()
         {
             DatabaseAccess.Pipeline pipeline = new DatabaseAccess.Pipeline();
-            _ = pipeline.UpdatedGameServers();
-
-
+            while (true)
+            {
+                await pipeline.UpdatedGameServers();
+            }
         }
 
         private Process GetConsoleProcess(int processId)

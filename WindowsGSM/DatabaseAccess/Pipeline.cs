@@ -20,28 +20,40 @@ namespace WindowsGSM.DatabaseAccess
         public Pipeline() { }
 
         public async Task UpdatedGameServers()
-        {
+        {      
             MainWindow WindowsGSM = (MainWindow)Application.Current.MainWindow;
             var ServerList = WindowsGSM.ServerGrid.Items;
             var list = WindowsGSM.GetServerList();
             var connection = new MySqlConnection(connectionstring);
             using (connection)
             {
-                var sql = "INSERT INTO `wgsm`.`game_server` (`ID`,`PID`,`Game`,`Icon`,`Status`,`Name`,`IP`,`Port`,`QueryPort`,`Defaultmap`,`Maxplayers`,`Uptime`)VALUES(@ID,@PID,@Game,@Icon,@Status,@Name,@IP,@Port,@QueryPort,@Defaultmap,@Maxplayers,@Uptime)";
+           
                 foreach (ServerTable server in ServerList )
                 {
                     try
                     {
-                        connection.Execute(sql, server); 
+                        var quer = connection.Query<ServerTable>(DatabaseConstants.select + server.ID).ToList();
+                        Console.WriteLine(quer.ToString());
+                        if (quer.FirstOrDefault().ID.Equals(server.ID))
+                        {
+                            connection.Execute(DatabaseAccess.DatabaseConstants.update, server);
+                        }
+                        else
+                        {
+                            connection.Execute(DatabaseAccess.DatabaseConstants.insert, server); 
+                        }
                     }
                     catch (MySqlException ex)
                     {
                         Console.WriteLine(ex.Message);
-                        throw;
                     }
                     
                 }
             }
+        }
+        public void CheckForRecord()
+        {
+            Debug.WriteLine("Test");
         }
         public async Task TestDatabaseConnection()
         {
